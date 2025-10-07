@@ -311,7 +311,9 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     const resizeCanvas = () => {
       const container = canvas.parentElement
       if (container) {
-        canvas.width = container.clientWidth
+        const isMobile = window.innerWidth < 768
+        const padding = isMobile ? 32 : 0 // Add padding on mobile to prevent overflow
+        canvas.width = Math.min(container.clientWidth - padding, window.innerWidth - padding)
         canvas.height = container.clientHeight
       }
     }
@@ -374,8 +376,8 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
   }, [])
 
   return (
-    <div className="w-full h-full absolute inset-0">
-      <canvas ref={canvasRef} className="w-full h-full" style={{ background: "black", zIndex: 10 }} />
+    <div className="w-full h-full absolute inset-0 overflow-hidden flex items-center justify-center">
+      <canvas ref={canvasRef} className="max-w-full h-full" style={{ background: "black", zIndex: 10 }} />
     </div>
   )
 }

@@ -4,8 +4,8 @@ import { ParticleTextEffect } from "./particle-text-effect"
 
 export function HeroSection() {
   return (
-    <section className="py-12 md:py-20 px-4 relative overflow-hidden min-h-screen flex flex-col justify-between">
-      <div className="flex-1 flex items-start justify-center pt-8 md:pt-12 min-h-[40vh] md:min-h-[50vh]">
+    <section className="py-12 md:py-20 px-4 relative overflow-x-hidden min-h-screen flex flex-col justify-between">
+      <div className="flex-1 flex items-start justify-center pt-8 md:pt-12 min-h-[40vh] md:min-h-[50vh] px-4 md:px-0">
         <ParticleTextEffect words={["ChainFlow", "ON-CHAIN", "TRADING", "TRANSPARENT"]} />
       </div>
 
