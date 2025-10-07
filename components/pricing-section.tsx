@@ -166,17 +166,19 @@ export function PricingSection() {
                 ))}
               </ul>
 
-              <Button
-                className={`w-full ${
-                  plan.popular
-                    ? "bg-white text-black hover:bg-white/90"
-                    : "bg-transparent border border-white/20 text-white hover:bg-white/10"
-                } group`}
-                size="lg"
-              >
-                Start Challenge
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <a href="https://waitlist.chainflow.paxeer.app/" target="_blank" rel="noopener noreferrer">
+                <Button
+                  className={`w-full ${
+                    plan.popular
+                      ? "bg-white text-black hover:bg-white/90"
+                      : "bg-transparent border border-white/20 text-white hover:bg-white/10"
+                  } group`}
+                  size="lg"
+                >
+                  Start Challenge
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </a>
             </motion.div>
           ))}
         </div>
