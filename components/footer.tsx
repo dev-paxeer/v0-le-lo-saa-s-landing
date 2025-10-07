@@ -1,4 +1,5 @@
 import { LeLoLogo } from "./lelo-logo"
+import Link from "next/link"
 
 export function Footer() {
   return (
@@ -18,9 +19,9 @@ export function Footer() {
             <h3 className="font-semibold text-white mb-4">Platform</h3>
             <ul className="space-y-2 text-white/70">
               <li>
-                <a href="#pricing" className="hover:text-white transition-colors">
+                <Link href="/#pricing" className="hover:text-white transition-colors">
                   Challenges
-                </a>
+                </Link>
               </li>
               <li>
                 <a
@@ -43,9 +44,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#features" className="hover:text-white transition-colors">
-                  Public Ledger
-                </a>
+                <Link href="/instruments" className="hover:text-white transition-colors">
+                  Instruments
+                </Link>
               </li>
             </ul>
           </div>
@@ -54,24 +55,24 @@ export function Footer() {
             <h3 className="font-semibold text-white mb-4">Company</h3>
             <ul className="space-y-2 text-white/70">
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <Link href="/about" className="hover:text-white transition-colors">
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Blog
-                </a>
+                <Link href="/legal/terms" className="hover:text-white transition-colors">
+                  Terms of Service
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Careers
-                </a>
+                <Link href="/legal/privacy" className="hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Contact
-                </a>
+                <Link href="/legal/disclaimer" className="hover:text-white transition-colors">
+                  Risk Disclaimer
+                </Link>
               </li>
             </ul>
           </div>
