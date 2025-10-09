@@ -2,103 +2,63 @@
 
 import { motion } from "framer-motion"
 import { Button } from "./ui/button"
-import { Check, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 const pricingPlans = [
   {
-    name: "$25K Challenge",
+    name: "Evaluation-10k",
     price: "$0",
     period: "",
     description: "Start your trading journey",
-    features: [
-      "$25,000 evaluation account",
-      "20% profit target",
-      "10% daily drawdown limit",
-      "20% total drawdown limit",
-      "5 minimum trading days",
-      "Trade on OpenNet EVM chain",
-      "Public ledger access",
-    ],
+    accountSize: "$10,000",
+    profitTarget: "$2,000 (20%)",
+    dailyDrawdown: "$1,000 (10%)",
+    totalDrawdown: "$2,000 (20%)",
+    minDays: "5",
+    network: "OpenNet EVM",
+    publicLedger: "Yes",
     popular: false,
   },
   {
-    name: "$50K Challenge",
+    name: "Evaluation-25k",
     price: "$0",
     period: "",
-    description: "Most popular for traders",
-    features: [
-      "$50,000 evaluation account",
-      "20% profit target",
-      "10% daily drawdown limit",
-      "20% total drawdown limit",
-      "5 minimum trading days",
-      "Trade on OpenNet EVM chain",
-      "Public ledger access",
-    ],
+    description: "Start your trading journey",
+    accountSize: "$25,000",
+    profitTarget: "$5,000 (20%)",
+    dailyDrawdown: "$2,500 (10%)",
+    totalDrawdown: "$5,000 (20%)",
+    minDays: "5",
+    network: "OpenNet EVM",
+    publicLedger: "Yes",
+    popular: false,
+  },
+  {
+    name: "Evaluation-50k",
+    price: "$0",
+    period: "",
+    description: "Start your trading journey",
+    accountSize: "$50,000",
+    profitTarget: "$10,000 (20%)",
+    dailyDrawdown: "$5,000 (10%)",
+    totalDrawdown: "$10,000 (20%)",
+    minDays: "5",
+    network: "OpenNet EVM",
+    publicLedger: "Yes",
     popular: true,
   },
   {
-    name: "$100K Challenge",
+    name: "Evaluation-100k",
     price: "$0",
     period: "",
-    description: "For serious traders",
-    features: [
-      "$100,000 evaluation account",
-      "20% profit target",
-      "10% daily drawdown limit",
-      "20% total drawdown limit",
-      "5 minimum trading days",
-      "Trade on OpenNet EVM chain",
-      "Public ledger access",
-    ],
-    popular: false,
-  },
-  {
-    name: "$250K Challenge",
-    price: "$0",
-    period: "",
-    description: "Advanced trading capital",
-    features: [
-      "$250,000 evaluation account",
-      "20% profit target",
-      "10% daily drawdown limit",
-      "20% total drawdown limit",
-      "5 minimum trading days",
-      "Trade on OpenNet EVM chain",
-      "Public ledger access",
-    ],
-    popular: false,
-  },
-  {
-    name: "$500K Challenge",
-    price: "$0",
-    period: "",
-    description: "Professional level trading",
-    features: [
-      "$500,000 evaluation account",
-      "20% profit target",
-      "10% daily drawdown limit",
-      "20% total drawdown limit",
-      "5 minimum trading days",
-      "Trade on OpenNet EVM chain",
-      "Public ledger access",
-    ],
-    popular: false,
-  },
-  {
-    name: "$1M Challenge",
-    price: "$0",
-    period: "",
-    description: "Elite trading capital",
-    features: [
-      "$1,000,000 evaluation account",
-      "20% profit target",
-      "10% daily drawdown limit",
-      "20% total drawdown limit",
-      "5 minimum trading days",
-      "Trade on OpenNet EVM chain",
-      "Public ledger access",
-    ],
+    description: "Start your trading journey",
+    accountSize: "$100,000",
+    profitTarget: "$20,000 (20%)",
+    dailyDrawdown: "$10,000 (10%)",
+    totalDrawdown: "$20,000 (20%)",
+    minDays: "5",
+    network: "OpenNet EVM",
+    publicLedger: "Yes",
     popular: false,
   },
 ]
@@ -129,7 +89,7 @@ export function PricingSection() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {pricingPlans.map((plan, index) => (
             <motion.div
               key={plan.name}
@@ -150,35 +110,50 @@ export function PricingSection() {
 
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+                <p className="text-gray-400 text-sm mb-4">{plan.accountSize} evaluation account</p>
                 <div className="mb-4">
                   <span className="text-4xl font-bold text-white">{plan.price}</span>
-                  <span className="text-gray-400">{plan.period}</span>
                 </div>
-                <p className="text-gray-300">{plan.description}</p>
               </div>
 
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center text-gray-300">
-                    <Check className="h-5 w-5 text-white mr-3 flex-shrink-0" />
-                    {feature}
-                  </li>
-                ))}
+              <ul className="space-y-3 mb-8 text-sm">
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Profit target</span>
+                  <span className="font-medium">{plan.profitTarget}</span>
+                </li>
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Daily drawdown limit</span>
+                  <span className="font-medium">{plan.dailyDrawdown}</span>
+                </li>
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Total drawdown limit</span>
+                  <span className="font-medium">{plan.totalDrawdown}</span>
+                </li>
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Minimum trading days</span>
+                  <span className="font-medium">{plan.minDays}</span>
+                </li>
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Network</span>
+                  <span className="font-medium">{plan.network}</span>
+                </li>
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Public ledger access</span>
+                  <span className="font-medium">{plan.publicLedger}</span>
+                </li>
               </ul>
 
-              <a href="https://waitlist.chainflow.paxeer.app/" target="_blank" rel="noopener noreferrer">
-                <Button
-                  className={`w-full ${
-                    plan.popular
-                      ? "bg-white text-black hover:bg-white/90"
-                      : "bg-transparent border border-white/20 text-white hover:bg-white/10"
-                  } group`}
-                  size="lg"
-                >
-                  Start Challenge
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </a>
+              <Button
+                className={`w-full ${
+                  plan.popular
+                    ? "bg-white text-black hover:bg-white/90"
+                    : "bg-transparent border border-white/20 text-white hover:bg-white/10"
+                } group`}
+                size="lg"
+              >
+                Start Challenge
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </motion.div>
           ))}
         </div>

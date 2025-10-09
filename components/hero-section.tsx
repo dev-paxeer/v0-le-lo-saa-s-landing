@@ -14,12 +14,10 @@ export function HeroSection() {
           <p className="text-base md:text-lg lg:text-xl text-gray-400 mb-6 md:mb-8 max-w-3xl mx-auto">{""}</p>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-12">
-            <a href="https://waitlist.chainflow.paxeer.app/" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-white hover:bg-gray-200 text-black group w-full sm:w-auto">
-                Start Evaluation
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </a>
+            <Button size="lg" className="bg-white hover:bg-gray-200 text-black group w-full sm:w-auto">
+              Start Evaluation
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
             <Button
               size="lg"
               variant="outline"

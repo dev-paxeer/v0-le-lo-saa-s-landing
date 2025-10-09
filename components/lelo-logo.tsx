@@ -1,11 +1,16 @@
+import Image from "next/image"
+
 export function LeLoLogo({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center space-x-2 ${className}`}>
-      <div className="relative">
-        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-          <div className="w-4 h-4 bg-background rounded-sm transform rotate-45"></div>
-        </div>
-        <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full"></div>
+      <div className="relative w-8 h-8">
+        <Image
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OPENNET_ICON.PNG-QILPhfIZve0nd55LUY9zhB3ChbuUF3.png"
+          alt="ChainFlow Logo"
+          width={32}
+          height={32}
+          className="rounded-lg"
+        />
       </div>
       <span className="text-xl font-bold text-foreground">ChainFlow</span>
     </div>
