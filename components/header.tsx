@@ -93,14 +93,20 @@ export function Header() {
             variant="ghost"
             size="sm"
             className="text-foreground/80 hover:text-foreground hover:bg-foreground/10 transition-all duration-200 rounded-xl"
+            asChild
           >
-            Sign In
+            <Link href="https://dashboard.paxeer.app/en" target="_blank" rel="noopener noreferrer">
+              Sign In
+            </Link>
           </Button>
           <Button
             size="sm"
             className="bg-primary hover:bg-primary/90 text-primary-foreground transform transition-all duration-200 hover:scale-105 hover:shadow-lg rounded-xl"
+            asChild
           >
-            Get Started
+            <Link href="https://dashboard.paxeer.app/en" target="_blank" rel="noopener noreferrer">
+              Get Started
+            </Link>
           </Button>
         </div>
       </div>

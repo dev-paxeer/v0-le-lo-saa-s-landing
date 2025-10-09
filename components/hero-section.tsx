@@ -1,6 +1,7 @@
 import { Button } from "./ui/button"
 import { ArrowRight } from "lucide-react"
 import { ParticleTextEffect } from "./particle-text-effect"
+import Link from "next/link"
 
 export function HeroSection() {
   return (
@@ -14,16 +15,21 @@ export function HeroSection() {
           <p className="text-base md:text-lg lg:text-xl text-gray-400 mb-6 md:mb-8 max-w-3xl mx-auto">{""}</p>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-12">
-            <Button size="lg" className="bg-white hover:bg-gray-200 text-black group w-full sm:w-auto">
-              Start Evaluation
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            <Button size="lg" className="bg-white hover:bg-gray-200 text-black group w-full sm:w-auto" asChild>
+              <Link href="https://dashboard.paxeer.app/en" target="_blank" rel="noopener noreferrer">
+                Start Evaluation
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="border-gray-600 text-white hover:bg-gray-800 bg-transparent w-full sm:w-auto"
+              asChild
             >
-              View Public Ledger
+              <Link href="https://opennet.paxeer.app" target="_blank" rel="noopener noreferrer">
+                View Public Ledger
+              </Link>
             </Button>
           </div>
 

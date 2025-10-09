@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Button } from "./ui/button"
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 const pricingPlans = [
   {
@@ -150,9 +151,12 @@ export function PricingSection() {
                     : "bg-transparent border border-white/20 text-white hover:bg-white/10"
                 } group`}
                 size="lg"
+                asChild
               >
-                Start Challenge
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <Link href="https://dashboard.paxeer.app/en" target="_blank" rel="noopener noreferrer">
+                  Start Challenge
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
             </motion.div>
           ))}

@@ -124,9 +124,11 @@ export default function FeaturesPage() {
                 success.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="text-lg px-8 py-6 rounded-xl">
-                  Start Free Evaluation
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                <Button size="lg" className="text-lg px-8 py-6 rounded-xl" asChild>
+                  <Link href="https://dashboard.paxeer.app/en" target="_blank" rel="noopener noreferrer">
+                    Start Free Evaluation
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl bg-transparent" asChild>
                   <Link href="/about">Learn More About Us</Link>

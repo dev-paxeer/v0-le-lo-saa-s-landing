@@ -193,7 +193,9 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="text-lg px-8" asChild>
-                <Link href="/#pricing">Start Free Evaluation</Link>
+                <Link href="https://dashboard.paxeer.app/en" target="_blank" rel="noopener noreferrer">
+                  Start Free Evaluation
+                </Link>
               </Button>
               <Button size="lg" variant="outline" className="text-lg px-8 bg-transparent" asChild>
                 <Link href="/#features">Learn More</Link>
