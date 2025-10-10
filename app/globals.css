@@ -217,8 +217,17 @@
   padding: 2px;
   border-radius: 24px;
   position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
   background: linear-gradient(-30deg, var(--gradient-color), transparent, var(--gradient-color)),
     linear-gradient(to bottom, var(--color-neutral-900), var(--color-neutral-900));
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    max-width: 100%;
+  }
 }
 
 /* Inner container */
@@ -236,8 +245,6 @@
 
 .main-card {
   width: 100%;
-  min-width: 280px;
-  max-width: 420px;
   height: 500px;
   border-radius: 24px;
   border: 2px solid var(--electric-border-color);
@@ -248,8 +255,11 @@
 
 @media (max-width: 768px) {
   .main-card {
-    max-width: 340px;
-    height: 480px;
+    height: auto;
+    min-height: 480px;
+    /* Disable expensive filter on mobile */
+    filter: none !important;
+    animation: none !important;
   }
 }
 
@@ -278,6 +288,14 @@
   right: 0;
   bottom: 0;
   filter: blur(4px);
+}
+
+@media (max-width: 768px) {
+  .glow-layer-1,
+  .glow-layer-2 {
+    /* Reduce blur on mobile for performance */
+    filter: blur(0.5px);
+  }
 }
 
 /* Overlay effects */
@@ -313,6 +331,14 @@
   background: linear-gradient(-30deg, white, transparent 30%, transparent 70%, white);
 }
 
+@media (max-width: 768px) {
+  .overlay-1,
+  .overlay-2 {
+    /* Disable overlays on mobile for performance */
+    display: none;
+  }
+}
+
 /* Background glow */
 .background-glow {
   position: absolute;
@@ -330,6 +356,14 @@
   background: linear-gradient(-30deg, var(--silver-bright), transparent, var(--electric-border-color));
 }
 
+@media (max-width: 768px) {
+  .background-glow {
+    /* Disable expensive blur on mobile */
+    filter: blur(8px);
+    opacity: 0.2;
+  }
+}
+
 /* Content container */
 .content-container {
   position: absolute;
@@ -341,6 +375,14 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 24px;
+  }
 }
 
 /* Content sections */
@@ -357,6 +399,18 @@
   flex-direction: column;
   padding: 48px;
   padding-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .content-top {
+    padding: 24px;
+    padding-bottom: 12px;
+  }
+  
+  .content-bottom {
+    padding: 24px;
+    padding-top: 12px;
+  }
 }
 
 /* Scrollbar glass component */

@@ -135,8 +135,6 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
   const wordIndexRef = useRef(0)
   const mouseRef = useRef({ x: 0, y: 0, isPressed: false, isRightClick: false })
   const isMobileRef = useRef(false)
-
-  const pixelSteps = isMobileRef.current ? 10 : 6 // Fewer particles on mobile
   const drawAsPoints = true
 
   const generateRandomPos = (
@@ -187,7 +185,8 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     const particles = particlesRef.current
     let particleIndex = 0
 
-    // Collect coordinates
+    // Collect coordinates with dynamic pixel steps
+    const pixelSteps = isMobileRef.current ? 15 : 6 // Much fewer particles on mobile
     const coordsIndexes: number[] = []
     for (let i = 0; i < pixels.length; i += pixelSteps * 4) {
       coordsIndexes.push(i)
@@ -226,11 +225,11 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
           particle.pos.x = randomPos.x
           particle.pos.y = randomPos.y
 
-          const speedMultiplier = isMobileRef.current ? 0.8 : 1
+          const speedMultiplier = isMobileRef.current ? 1.2 : 1 // Faster on mobile to reach target quicker
           particle.maxSpeed = (Math.random() * 6 + 4) * speedMultiplier
-          particle.maxForce = particle.maxSpeed * 0.05
-          particle.particleSize = isMobileRef.current ? Math.random() * 4 + 4 : Math.random() * 6 + 6
-          particle.colorBlendRate = Math.random() * 0.0275 + 0.0025
+          particle.maxForce = particle.maxSpeed * 0.08 // Higher force for faster settling
+          particle.particleSize = isMobileRef.current ? Math.random() * 3 + 3 : Math.random() * 6 + 6
+          particle.colorBlendRate = isMobileRef.current ? 0.05 : Math.random() * 0.0275 + 0.0025
 
           particles.push(particle)
         }
@@ -267,21 +266,24 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     ctx.fillStyle = `rgba(0, 0, 0, ${blurAlpha})`
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-    // Update and draw particles
-    for (let i = particles.length - 1; i >= 0; i--) {
-      const particle = particles[i]
-      particle.move()
-      particle.draw(ctx, drawAsPoints)
+    // Update and draw particles (skip frames on mobile for performance)
+    const skipFrames = isMobileRef.current ? 2 : 1
+    if (frameCountRef.current % skipFrames === 0) {
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const particle = particles[i]
+        particle.move()
+        particle.draw(ctx, drawAsPoints)
 
-      // Remove dead particles that are out of bounds
-      if (particle.isKilled) {
-        if (
-          particle.pos.x < 0 ||
-          particle.pos.x > canvas.width ||
-          particle.pos.y < 0 ||
-          particle.pos.y > canvas.height
-        ) {
-          particles.splice(i, 1)
+        // Remove dead particles that are out of bounds
+        if (particle.isKilled) {
+          if (
+            particle.pos.x < 0 ||
+            particle.pos.x > canvas.width ||
+            particle.pos.y < 0 ||
+            particle.pos.y > canvas.height
+          ) {
+            particles.splice(i, 1)
+          }
         }
       }
     }
@@ -300,7 +302,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
 
     // Auto-advance words (slower on mobile to reduce load)
     frameCountRef.current++
-    const frameInterval = isMobileRef.current ? 300 : 240
+    const frameInterval = isMobileRef.current ? 360 : 240 // Slower transitions on mobile
     if (frameCountRef.current % frameInterval === 0) {
       wordIndexRef.current = (wordIndexRef.current + 1) % words.length
       nextWord(words[wordIndexRef.current], canvas)

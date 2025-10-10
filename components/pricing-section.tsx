@@ -106,7 +106,7 @@ export function PricingSection() {
                 </div>
               )}
 
-              <svg className="svg-container">
+              <svg className="svg-container hidden md:block">
                 <defs>
                   <filter id={`turbulent-displace-${index}`} colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
                     <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
