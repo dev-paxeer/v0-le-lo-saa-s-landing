@@ -312,7 +312,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
       const container = canvas.parentElement
       if (container) {
         const isMobile = window.innerWidth < 768
-        const padding = isMobile ? 32 : 0 // Add padding on mobile to prevent overflow
+        const padding = isMobile ? 64 : 0 // More padding on mobile to prevent overflow
         canvas.width = Math.min(container.clientWidth - padding, window.innerWidth - padding)
         canvas.height = container.clientHeight
       }
