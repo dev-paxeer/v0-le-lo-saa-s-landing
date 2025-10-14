@@ -165,9 +165,12 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     offscreenCanvas.height = canvas.height
     const offscreenCtx = offscreenCanvas.getContext("2d")!
 
+    const isMobile = window.innerWidth < 768
+    const fontSize = isMobile ? Math.min(canvas.width * 0.15, 60) : 100
+
     // Draw text
     offscreenCtx.fillStyle = "white"
-    offscreenCtx.font = "bold 100px Arial"
+    offscreenCtx.font = `bold ${fontSize}px Arial`
     offscreenCtx.textAlign = "center"
     offscreenCtx.textBaseline = "middle"
     offscreenCtx.fillText(word, canvas.width / 2, canvas.height / 3)
@@ -312,8 +315,9 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
       const container = canvas.parentElement
       if (container) {
         const isMobile = window.innerWidth < 768
-        const padding = isMobile ? 32 : 0 // Add padding on mobile to prevent overflow
-        canvas.width = Math.min(container.clientWidth - padding, window.innerWidth - padding)
+        const padding = isMobile ? 48 : 0
+        const maxWidth = isMobile ? window.innerWidth - padding : container.clientWidth
+        canvas.width = Math.min(container.clientWidth, maxWidth)
         canvas.height = container.clientHeight
       }
     }
@@ -376,7 +380,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
   }, [])
 
   return (
-    <div className="w-full h-full absolute inset-0 overflow-hidden flex items-center justify-center">
+    <div className="w-full h-full absolute inset-0 overflow-hidden flex items-center justify-center px-6 md:px-0">
       <canvas ref={canvasRef} className="max-w-full h-full" style={{ background: "black", zIndex: 10 }} />
     </div>
   )

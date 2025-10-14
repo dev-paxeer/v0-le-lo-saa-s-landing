@@ -5,7 +5,7 @@ export function LeLoLogo({ className = "" }: { className?: string }) {
     <div className={`flex items-center space-x-2 ${className}`}>
       <div className="relative w-8 h-8">
         <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OPENNET_ICON.PNG-QILPhfIZve0nd55LUY9zhB3ChbuUF3.png"
+          src="/images/design-mode/OPENNET_ICON.PNG.png"
           alt="ChainFlow Logo"
           width={32}
           height={32}

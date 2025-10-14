@@ -113,7 +113,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-3 px-4 py-2 rounded-xl bg-foreground/5 border border-border/30">
             <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-hqhdOgOgIFpYrE6cx96fIuHJhINGnG.png"
+                src="/images/design-mode/image.png"
                 alt="PAX Logo"
                 width={32}
                 height={32}
@@ -183,7 +183,7 @@ export function Header() {
                 <div className="flex items-center gap-3 p-4 rounded-xl bg-foreground/5 border border-border/30">
                   <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-hqhdOgOgIFpYrE6cx96fIuHJhINGnG.png"
+                      src="/images/design-mode/image.png"
                       alt="PAX Logo"
                       width={40}
                       height={40}
