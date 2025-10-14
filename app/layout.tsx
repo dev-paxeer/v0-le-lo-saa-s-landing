@@ -4,7 +4,7 @@ import "./globals.css"
 import ClientLayout from "./ClientLayout"
 
 export const metadata: Metadata = {
-  title: "ChainFlow",
+  title: "First On chain Prop Firm",
   description: "By Traders for Traders. On chain 0 Cost Prop firm ",
   generator: "Paxeer.app",
 }

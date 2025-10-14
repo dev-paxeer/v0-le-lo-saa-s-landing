@@ -94,6 +94,9 @@ export function PricingSection() {
           {pricingPlans.map((plan, index) => (
             <motion.div
               key={plan.name}
+              className={`relative bg-card border rounded-lg p-8 ${
+                plan.popular ? "border-white/30 bg-white/5" : "border-border/20 bg-background/50"
+              }`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -101,107 +104,60 @@ export function PricingSection() {
               whileHover={{ y: -5 }}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span className="bg-white text-black px-4 py-1 rounded-full text-sm font-medium">Most Popular</span>
                 </div>
               )}
 
-              <svg className="svg-container hidden md:block">
-                <defs>
-                  <filter id={`turbulent-displace-${index}`} colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
-                    <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
-                    <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
-                      <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
-                    </feOffset>
-
-                    <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
-                    <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
-                      <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
-                    </feOffset>
-
-                    <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
-                    <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
-                      <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
-                    </feOffset>
-
-                    <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
-                    <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
-                      <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
-                    </feOffset>
-
-                    <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
-                    <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
-                    <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
-
-                    <feDisplacementMap
-                      in="SourceGraphic"
-                      in2="combinedNoise"
-                      scale="30"
-                      xChannelSelector="R"
-                      yChannelSelector="B"
-                    />
-                  </filter>
-                </defs>
-              </svg>
-
-              <div className="card-container">
-                <div className="inner-container">
-                  <div className="border-outer">
-                    <div className="main-card" style={{ filter: `url(#turbulent-displace-${index})` }}></div>
-                  </div>
-                  <div className="glow-layer-1"></div>
-                  <div className="glow-layer-2"></div>
-                </div>
-
-                <div className="overlay-1"></div>
-                <div className="overlay-2"></div>
-                <div className="background-glow"></div>
-
-                <div className="content-container">
-                  <div className="content-top">
-                    <div className="scrollbar-glass">{plan.name}</div>
-                    <p className="title">{plan.price}</p>
-                  </div>
-
-                  <hr className="divider" />
-
-                  <div className="content-bottom">
-                    <ul className="space-y-3 mb-8 text-sm">
-                      <li className="flex flex-col text-gray-300">
-                        <span className="text-gray-400 text-xs">Account Size</span>
-                        <span className="font-medium">{plan.accountSize}</span>
-                      </li>
-                      <li className="flex flex-col text-gray-300">
-                        <span className="text-gray-400 text-xs">Profit target</span>
-                        <span className="font-medium">{plan.profitTarget}</span>
-                      </li>
-                      <li className="flex flex-col text-gray-300">
-                        <span className="text-gray-400 text-xs">Daily drawdown</span>
-                        <span className="font-medium">{plan.dailyDrawdown}</span>
-                      </li>
-                      <li className="flex flex-col text-gray-300">
-                        <span className="text-gray-400 text-xs">Total drawdown</span>
-                        <span className="font-medium">{plan.totalDrawdown}</span>
-                      </li>
-                      <li className="flex flex-col text-gray-300">
-                        <span className="text-gray-400 text-xs">Min days</span>
-                        <span className="font-medium">{plan.minDays}</span>
-                      </li>
-                    </ul>
-
-                    <Button
-                      className="w-full bg-white text-black hover:bg-white/90 group"
-                      size="lg"
-                      asChild
-                    >
-                      <Link href="https://dashboard.paxeer.app/en" target="_blank" rel="noopener noreferrer">
-                        Start Challenge
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                    </Button>
-                  </div>
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+                <p className="text-gray-400 text-sm mb-4">{plan.accountSize} evaluation account</p>
+                <div className="mb-4">
+                  <span className="text-4xl font-bold text-white">{plan.price}</span>
                 </div>
               </div>
+
+              <ul className="space-y-3 mb-8 text-sm">
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Profit target</span>
+                  <span className="font-medium">{plan.profitTarget}</span>
+                </li>
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Daily drawdown limit</span>
+                  <span className="font-medium">{plan.dailyDrawdown}</span>
+                </li>
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Total drawdown limit</span>
+                  <span className="font-medium">{plan.totalDrawdown}</span>
+                </li>
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Minimum trading days</span>
+                  <span className="font-medium">{plan.minDays}</span>
+                </li>
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Network</span>
+                  <span className="font-medium">{plan.network}</span>
+                </li>
+                <li className="flex flex-col text-gray-300">
+                  <span className="text-gray-400 text-xs">Public ledger access</span>
+                  <span className="font-medium">{plan.publicLedger}</span>
+                </li>
+              </ul>
+
+              <Button
+                className={`w-full ${
+                  plan.popular
+                    ? "bg-white text-black hover:bg-white/90"
+                    : "bg-transparent border border-white/20 text-white hover:bg-white/10"
+                } group`}
+                size="lg"
+                asChild
+              >
+                <Link href="https://dashboard.paxeer.app/en" target="_blank" rel="noopener noreferrer">
+                  Start Challenge
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
             </motion.div>
           ))}
         </div>
