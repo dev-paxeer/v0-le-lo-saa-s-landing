@@ -188,62 +188,65 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     const particles = particlesRef.current
     let particleIndex = 0
 
-    const coords: { x: number; y: number }[] = []
-    for (let y = 0; y < canvas.height; y += pixelSteps) {
-      for (let x = 0; x < canvas.width; x += pixelSteps) {
-        const i = (y * canvas.width + x) * 4
-        const alpha = pixels[i + 3]
-        if (alpha > 0) {
-          coords.push({ x, y })
-        }
-      }
+    // Collect coordinates
+    const coordsIndexes: number[] = []
+    for (let i = 0; i < pixels.length; i += pixelSteps * 4) {
+      coordsIndexes.push(i)
     }
 
     // Shuffle coordinates for fluid motion
-    for (let i = coords.length - 1; i > 0; i--) {
+    for (let i = coordsIndexes.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
-      ;[coords[i], coords[j]] = [coords[j], coords[i]]
+      ;[coordsIndexes[i], coordsIndexes[j]] = [coordsIndexes[j], coordsIndexes[i]]
     }
 
-    for (const coord of coords) {
-      let particle: Particle
+    for (const coordIndex of coordsIndexes) {
+      const pixelIndex = coordIndex
+      const alpha = pixels[pixelIndex + 3]
 
-      if (particleIndex < particles.length) {
-        particle = particles[particleIndex]
-        particle.isKilled = false
-        particleIndex++
-      } else {
-        particle = new Particle()
+      if (alpha > 0) {
+        const x = (pixelIndex / 4) % canvas.width
+        const y = Math.floor(pixelIndex / 4 / canvas.width)
 
-        const randomPos = generateRandomPos(
-          canvas.width / 2,
-          canvas.height / 2,
-          (canvas.width + canvas.height) / 2,
-          canvas.width,
-          canvas.height,
-        )
-        particle.pos.x = randomPos.x
-        particle.pos.y = randomPos.y
+        let particle: Particle
 
-        particle.maxSpeed = Math.random() * 6 + 4
-        particle.maxForce = particle.maxSpeed * 0.05
-        particle.particleSize = Math.random() * 6 + 6
-        particle.colorBlendRate = Math.random() * 0.0275 + 0.0025
+        if (particleIndex < particles.length) {
+          particle = particles[particleIndex]
+          particle.isKilled = false
+          particleIndex++
+        } else {
+          particle = new Particle()
 
-        particles.push(particle)
+          const randomPos = generateRandomPos(
+            canvas.width / 2,
+            canvas.height / 2,
+            (canvas.width + canvas.height) / 2,
+            canvas.width,
+            canvas.height,
+          )
+          particle.pos.x = randomPos.x
+          particle.pos.y = randomPos.y
+
+          particle.maxSpeed = Math.random() * 6 + 4
+          particle.maxForce = particle.maxSpeed * 0.05
+          particle.particleSize = Math.random() * 6 + 6
+          particle.colorBlendRate = Math.random() * 0.0275 + 0.0025
+
+          particles.push(particle)
+        }
+
+        // Set color transition
+        particle.startColor = {
+          r: particle.startColor.r + (particle.targetColor.r - particle.startColor.r) * particle.colorWeight,
+          g: particle.startColor.g + (particle.targetColor.g - particle.startColor.g) * particle.colorWeight,
+          b: particle.startColor.b + (particle.targetColor.b - particle.startColor.b) * particle.colorWeight,
+        }
+        particle.targetColor = newColor
+        particle.colorWeight = 0
+
+        particle.target.x = x
+        particle.target.y = y
       }
-
-      // Set color transition
-      particle.startColor = {
-        r: particle.startColor.r + (particle.targetColor.r - particle.startColor.r) * particle.colorWeight,
-        g: particle.startColor.g + (particle.targetColor.g - particle.startColor.g) * particle.colorWeight,
-        b: particle.startColor.b + (particle.targetColor.b - particle.startColor.b) * particle.colorWeight,
-      }
-      particle.targetColor = newColor
-      particle.colorWeight = 0
-
-      particle.target.x = coord.x
-      particle.target.y = coord.y
     }
 
     // Kill remaining particles
