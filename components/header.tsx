@@ -138,12 +138,12 @@ export function Header() {
             </div>
             <div className="flex items-center gap-2 text-xs">
               <span className="font-semibold text-foreground">$PAX</span>
-              <span className="text-foreground/90 font-medium">$2.73</span>
+              <span className="text-foreground/90 font-medium">$3.25</span>
               <span className="text-green-500 font-medium">+1.52%</span>
               <div className="hidden lg:flex items-center gap-1.5">
                 <div className="w-px h-3 bg-border/50"></div>
                 <span className="text-foreground/60">MCap:</span>
-                <span className="text-foreground/90 font-medium">$2.7B</span>
+                <span className="text-foreground/90 font-medium">$3.25B</span>
               </div>
             </div>
           </div>
@@ -207,12 +207,12 @@ export function Header() {
                   <div className="flex flex-col gap-1">
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-foreground">$PAX</span>
-                      <span className="text-foreground/90 font-medium">$2.73</span>
+                      <span className="text-foreground/90 font-medium">$3.25</span>
                       <span className="text-green-500 font-medium text-sm">+1.52%</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <span className="text-foreground/60 text-xs">Market Cap:</span>
-                      <span className="text-foreground/90 font-medium text-sm">$2.7B</span>
+                      <span className="text-foreground/90 font-medium text-sm">$3.25B</span>
                     </div>
                   </div>
                 </div>

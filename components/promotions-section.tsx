@@ -24,7 +24,7 @@ export function PromotionsSection() {
         <div className="grid lg:grid-cols-2 gap-8 items-center mb-12">
           <div className="relative rounded-2xl overflow-hidden border border-border/50 shadow-2xl">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChainFlow%20%281%29-7AgM8aNqdiP1zO9g4KyvgtMrS9afeW.png"
+              src="/images/design-mode/ChainFlow%20%281%29.png"
               alt="ChainFlow Trading Competition - $5,000 USDT and $10,000 WETH in prizes"
               width={1920}
               height={1080}
