@@ -5,7 +5,8 @@ import { LeLoLogo } from "./lelo-logo"
 import { Button } from "./ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -65,80 +66,93 @@ export function Header() {
             <LeLoLogo />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-4">
             <Link
               href="/features"
-              className="relative text-foreground/80 hover:text-foreground transition-all duration-300 group px-3 py-1 rounded-lg hover:bg-foreground/5 transform hover:scale-110 hover:rotate-1 hover:skew-x-1"
+              className="relative text-foreground/80 hover:text-foreground transition-all duration-300 group px-2 py-1 rounded-lg hover:bg-foreground/5 text-sm"
             >
               Features
               <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-4"></span>
             </Link>
             <Link
+              href="/promotions"
+              className="relative text-foreground/80 hover:text-foreground transition-all duration-300 group px-2 py-1 rounded-lg hover:bg-foreground/5 text-sm"
+            >
+              <span className="flex items-center gap-1">
+                Promotions
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+              </span>
+              <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-4"></span>
+            </Link>
+            <Link
               href="/#pricing"
-              className="relative text-foreground/80 hover:text-foreground transition-all duration-300 group px-3 py-1 rounded-lg hover:bg-foreground/5 transform hover:scale-110 hover:-rotate-1 hover:-skew-x-1"
+              className="relative text-foreground/80 hover:text-foreground transition-all duration-300 group px-2 py-1 rounded-lg hover:bg-foreground/5 text-sm"
             >
               Pricing
               <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-4"></span>
             </Link>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger className="relative text-foreground/80 hover:text-foreground transition-all duration-300 group px-2 py-1 rounded-lg hover:bg-foreground/5 text-sm flex items-center gap-1 outline-none">
+                Trading
+                <ChevronDown className="w-3 h-3" />
+                <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-4"></span>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-48">
+                <DropdownMenuItem asChild>
+                  <Link href="/markets" className="cursor-pointer">
+                    Markets
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/instruments" className="cursor-pointer">
+                    Instruments
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/economic-calendar" className="cursor-pointer">
+                    Economic Calendar
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Link
               href="/about"
-              className="relative text-foreground/80 hover:text-foreground transition-all duration-300 group px-3 py-1 rounded-lg hover:bg-foreground/5 transform hover:scale-110 hover:rotate-1 hover:skew-x-1"
+              className="relative text-foreground/80 hover:text-foreground transition-all duration-300 group px-2 py-1 rounded-lg hover:bg-foreground/5 text-sm"
             >
               About
               <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-4"></span>
             </Link>
-            <Link
-              href="/markets"
-              className="relative text-foreground/80 hover:text-foreground transition-all duration-300 group px-3 py-1 rounded-lg hover:bg-foreground/5 transform hover:scale-110 hover:-rotate-1 hover:-skew-x-1"
-            >
-              Markets
-              <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-4"></span>
-            </Link>
-            <Link
-              href="/instruments"
-              className="relative text-foreground/80 hover:text-foreground transition-all duration-300 group px-3 py-1 rounded-lg hover:bg-foreground/5 transform hover:scale-110 hover:rotate-1 hover:skew-x-1"
-            >
-              Instruments
-              <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-4"></span>
-            </Link>
-            <Link
-              href="/economic-calendar"
-              className="relative text-foreground/80 hover:text-foreground transition-all duration-300 group px-3 py-1 rounded-lg hover:bg-foreground/5 transform hover:scale-110 hover:-rotate-1 hover:-skew-x-1"
-            >
-              Calendar
-              <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-4"></span>
-            </Link>
           </nav>
 
-          <div className="hidden lg:flex items-center gap-3 px-4 py-2 rounded-xl bg-foreground/5 border border-border/30">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+          <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-foreground/5 border border-border/30">
+            <div className="relative w-6 h-6 rounded-full overflow-hidden flex-shrink-0">
               <Image
                 src="/images/design-mode/image.png"
                 alt="PAX Logo"
-                width={32}
-                height={32}
+                width={24}
+                height={24}
                 className="object-cover"
               />
             </div>
-            <div className="flex items-center gap-3 text-sm">
-              <div className="flex items-center gap-1.5">
-                <span className="font-semibold text-foreground">$PAX</span>
-                <span className="text-foreground/90 font-medium">$3.25</span>
-                <span className="text-green-500 font-medium">+3.18%</span>
-              </div>
-              <div className="w-px h-4 bg-border/50"></div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-foreground/60 text-xs">MCap:</span>
-                <span className="text-foreground/90 font-medium">$3.25B</span>
+            <div className="flex items-center gap-2 text-xs">
+              <span className="font-semibold text-foreground">$PAX</span>
+              <span className="text-foreground/90 font-medium">$2.73</span>
+              <span className="text-green-500 font-medium">+1.52%</span>
+              <div className="hidden lg:flex items-center gap-1.5">
+                <div className="w-px h-3 bg-border/50"></div>
+                <span className="text-foreground/60">MCap:</span>
+                <span className="text-foreground/90 font-medium">$2.7B</span>
               </div>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2">
             <Button
               variant="ghost"
               size="sm"
-              className="text-foreground/80 hover:text-foreground hover:bg-foreground/10 transition-all duration-200 rounded-xl"
+              className="text-foreground/80 hover:text-foreground hover:bg-foreground/10 transition-all duration-200 rounded-xl text-sm h-8"
               asChild
             >
               <Link href="https://dashboard.paxeer.app/en" target="_blank" rel="noopener noreferrer">
@@ -147,7 +161,7 @@ export function Header() {
             </Button>
             <Button
               size="sm"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground transform transition-all duration-200 hover:scale-105 hover:shadow-lg rounded-xl"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground transform transition-all duration-200 hover:scale-105 hover:shadow-lg rounded-xl text-sm h-8"
               asChild
             >
               <Link href="https://dashboard.paxeer.app/en" target="_blank" rel="noopener noreferrer">
@@ -193,12 +207,12 @@ export function Header() {
                   <div className="flex flex-col gap-1">
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-foreground">$PAX</span>
-                      <span className="text-foreground/90 font-medium">$3.25</span>
-                      <span className="text-green-500 font-medium text-sm">+3.18%</span>
+                      <span className="text-foreground/90 font-medium">$2.73</span>
+                      <span className="text-green-500 font-medium text-sm">+1.52%</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <span className="text-foreground/60 text-xs">Market Cap:</span>
-                      <span className="text-foreground/90 font-medium text-sm">$3.25B</span>
+                      <span className="text-foreground/90 font-medium text-sm">$2.7B</span>
                     </div>
                   </div>
                 </div>
@@ -211,6 +225,14 @@ export function Header() {
                   className="text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all duration-200 px-4 py-3 rounded-lg text-lg"
                 >
                   Features
+                </Link>
+                <Link
+                  href="/promotions"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all duration-200 px-4 py-3 rounded-lg text-lg flex items-center gap-2"
+                >
+                  Promotions
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
                 </Link>
                 <Link
                   href="/#pricing"

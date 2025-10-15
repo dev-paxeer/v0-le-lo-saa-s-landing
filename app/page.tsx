@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
+import { PromotionsSection } from "@/components/promotions-section"
 import { AnimatedFeaturesSection } from "@/components/animated-features-section"
 import { PricingSection } from "@/components/pricing-section"
 import { FAQSection } from "@/components/faq-section"
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Header />
       <main className="pt-20">
         <HeroSection />
+        <PromotionsSection />
         <AnimatedFeaturesSection />
         <PricingSection />
         <FAQSection />
