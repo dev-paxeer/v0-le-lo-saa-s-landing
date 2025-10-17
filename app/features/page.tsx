@@ -1,11 +1,25 @@
-import { ArrowRight, Eye, Trophy, Terminal, DollarSign, Zap, Network } from "lucide-react"
+import {
+  ArrowRight,
+  Eye,
+  Trophy,
+  Terminal,
+  DollarSign,
+  Zap,
+  Network,
+  MessageSquare,
+  Lock,
+  UserPlus,
+  Radio,
+  GraduationCap,
+  Handshake,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
 export default function FeaturesPage() {
-  const features = [
+  const tradingFeatures = [
     {
       icon: Eye,
       title: "Public Trading Settlement",
@@ -52,6 +66,51 @@ export default function FeaturesPage() {
     },
   ]
 
+  const socialFeatures = [
+    {
+      icon: MessageSquare,
+      title: "Public Trading Chatrooms",
+      description:
+        "Connect with traders worldwide in real-time public chatrooms. Share insights, discuss market movements, and build your trading network in a transparent community environment.",
+      highlight: "Community-driven",
+    },
+    {
+      icon: Lock,
+      title: "End-to-End Encrypted DMs",
+      description:
+        "Secure private conversations with E2EE technology. Discuss strategies, share ideas, or collaborate with other traders knowing your messages are completely private and encrypted.",
+      highlight: "Military-grade encryption",
+    },
+    {
+      icon: UserPlus,
+      title: "Public Trader Profiles",
+      description:
+        "Build your reputation with public profiles showcasing your trading stats, performance metrics, and content. Gain followers, share your journey, and establish yourself as a trusted trader in the community.",
+      highlight: "Build your brand",
+    },
+    {
+      icon: Radio,
+      title: "Trading Signal Channels",
+      description:
+        "Access both free public and premium paid signal chatrooms. Follow top traders, receive real-time trade alerts, and learn from the best. Create your own signal channel and monetize your expertise.",
+      highlight: "Free & Premium",
+    },
+    {
+      icon: Handshake,
+      title: "P2P OTC Market",
+      description:
+        "Execute large trades without market impact through our peer-to-peer OTC marketplace. Connect directly with other traders for block trades, negotiate terms, and settle on-chain with complete transparency.",
+      highlight: "Zero slippage",
+    },
+    {
+      icon: GraduationCap,
+      title: "Education & Signals Marketplace",
+      description:
+        "Access a curated marketplace of trading education content and premium signals. Learn from experienced traders, purchase courses, subscribe to signal services, and accelerate your trading journey.",
+      highlight: "Learn & Earn",
+    },
+  ]
+
   return (
     <>
       <Header />
@@ -65,18 +124,22 @@ export default function FeaturesPage() {
                 Built for Traders, By Traders
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                ChainFlow combines cutting-edge blockchain technology with professional trading tools to create the most
-                transparent and trader-friendly prop firm in the industry.
+                ChainFlow combines cutting-edge blockchain technology with professional trading tools and a thriving
+                social community to create the most transparent and trader-friendly prop firm in the industry.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Features Grid */}
+        {/* Trading Features Section */}
         <section className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-4">Core Trading Features</h2>
+              <p className="text-xl text-muted-foreground">Professional tools and infrastructure for serious traders</p>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => {
+              {tradingFeatures.map((feature, index) => {
                 const Icon = feature.icon
                 return (
                   <div
@@ -106,6 +169,42 @@ export default function FeaturesPage() {
                           <ArrowRight className="ml-2 w-5 h-5 group-hover/link:translate-x-1 transition-transform" />
                         </a>
                       )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 px-4 bg-muted/30">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-4">Social & Community Features</h2>
+              <p className="text-xl text-muted-foreground">
+                Connect, learn, and grow with a global community of traders
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {socialFeatures.map((feature, index) => {
+                const Icon = feature.icon
+                return (
+                  <div
+                    key={index}
+                    className="group relative bg-card border border-border rounded-2xl p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                    <div className="relative">
+                      <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="w-7 h-7 text-primary" />
+                      </div>
+                      {feature.highlight && (
+                        <span className="inline-block px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full mb-4">
+                          {feature.highlight}
+                        </span>
+                      )}
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">{feature.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                     </div>
                   </div>
                 )

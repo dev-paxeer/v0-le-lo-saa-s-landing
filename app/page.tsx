@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { PromotionsSection } from "@/components/promotions-section"
 import { AnimatedFeaturesSection } from "@/components/animated-features-section"
+import { SocialFeaturesSection } from "@/components/social-features-section"
 import { PricingSection } from "@/components/pricing-section"
 import { FAQSection } from "@/components/faq-section"
 import { AnimatedCTASection } from "@/components/animated-cta-section"
@@ -15,6 +16,7 @@ export default function HomePage() {
         <HeroSection />
         <PromotionsSection />
         <AnimatedFeaturesSection />
+        <SocialFeaturesSection />
         <PricingSection />
         <FAQSection />
         <AnimatedCTASection />
