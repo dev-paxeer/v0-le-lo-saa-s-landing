@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
+import { TrustBadgesSection } from "@/components/trust-badges-section"
 import { PromotionsSection } from "@/components/promotions-section"
 import { AnimatedFeaturesSection } from "@/components/animated-features-section"
 import { SocialFeaturesSection } from "@/components/social-features-section"
@@ -14,6 +15,7 @@ export default function HomePage() {
       <Header />
       <main className="pt-20">
         <HeroSection />
+        <TrustBadgesSection />
         <PromotionsSection />
         <AnimatedFeaturesSection />
         <SocialFeaturesSection />
