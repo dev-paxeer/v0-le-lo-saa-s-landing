@@ -125,7 +125,7 @@ interface ParticleTextEffectProps {
   words?: string[]
 }
 
-const DEFAULT_WORDS = ["ChainFlow", "First", "Fully", "OnChain", "Prop Firm"]
+const DEFAULT_WORDS = ["LeLo", "SAAS", "PLATFORM", "LELO"]
 
 export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffectProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -159,10 +159,6 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
   }
 
   const nextWord = (word: string, canvas: HTMLCanvasElement) => {
-    if (canvas.width <= 0 || canvas.height <= 0) {
-      return
-    }
-
     // Create off-screen canvas for text rendering
     const offscreenCanvas = document.createElement("canvas")
     offscreenCanvas.width = canvas.width
@@ -320,13 +316,9 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
       if (container) {
         const isMobile = window.innerWidth < 768
         const padding = isMobile ? 48 : 0
-        const containerWidth = container.clientWidth || window.innerWidth
-        const containerHeight = container.clientHeight || window.innerHeight * 0.5
-        const availableWidth = isMobile ? Math.min(window.innerWidth - padding, containerWidth) : containerWidth
-        const safeWidth = Math.max(Math.floor(availableWidth), 200)
-        const safeHeight = Math.max(Math.floor(containerHeight), 200)
-        canvas.width = safeWidth
-        canvas.height = safeHeight
+        const maxWidth = isMobile ? window.innerWidth - padding : container.clientWidth
+        canvas.width = Math.min(container.clientWidth, maxWidth)
+        canvas.height = container.clientHeight
       }
     }
 

@@ -1,38 +1,30 @@
-'use client'
-
 import { Button } from "./ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { CertifiedBadge } from "./certified-badge"
-import { ParticleTextEffect } from "./particle-text-effect"
 
 export function HeroSection() {
   return (
     <section className="py-12 md:py-20 px-4 relative overflow-x-hidden min-h-screen flex flex-col justify-between">
       <div className="flex-1 flex items-start justify-center pt-8 md:pt-12 min-h-[40vh] md:min-h-[50vh] px-4 md:px-0 relative">
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="hidden md:block w-full h-full">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-contain max-w-[90vw] md:max-w-4xl lg:max-w-5xl mx-auto opacity-90"
-              style={{
-                mixBlendMode: "screen",
-                filter: "brightness(1.1) contrast(1.1)",
-              }}
-              onError={(e) => {
-                console.log("[v0] Video failed to load:", e)
-              }}
-            >
-              <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vid_hero-UOtRWtP92wM7DmCrFSRtJfh5SYLTGF.webm" type="video/webm" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          <div className="block md:hidden w-full h-full relative">
-            <ParticleTextEffect />
-          </div>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-contain max-w-[90vw] md:max-w-4xl lg:max-w-5xl mx-auto opacity-90"
+            style={{
+              mixBlendMode: "screen",
+              filter: "brightness(1.1) contrast(1.1)",
+            }}
+            onError={(e) => {
+              console.log("[v0] Video failed to load:", e)
+            }}
+          >
+            <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vid_hero-UOtRWtP92wM7DmCrFSRtJfh5SYLTGF.webm" type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
 

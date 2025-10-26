@@ -1,4 +1,5 @@
 import { Header } from "@/components/header"
+import { TickerTape } from "@/components/ticker-tape"
 import { HeroSection } from "@/components/hero-section"
 import { TrustBadgesSection } from "@/components/trust-badges-section"
 import { PromotionsSection } from "@/components/promotions-section"
@@ -14,6 +15,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-20">
+        <TickerTape />
         <HeroSection />
         <TrustBadgesSection />
         <PromotionsSection />

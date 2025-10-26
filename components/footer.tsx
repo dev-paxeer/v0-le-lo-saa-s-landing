@@ -70,6 +70,21 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/institutional" className="hover:text-white transition-colors">
+                  Institutional Clients
+                </Link>
+              </li>
+              <li>
+                <Link href="/trading-fees" className="hover:text-white transition-colors">
+                  Trading Fees
+                </Link>
+              </li>
+              <li>
+                <Link href="/aml-policy" className="hover:text-white transition-colors">
+                  AML Policy
+                </Link>
+              </li>
+              <li>
                 <Link href="/legal/terms" className="hover:text-white transition-colors">
                   Terms of Service
                 </Link>
